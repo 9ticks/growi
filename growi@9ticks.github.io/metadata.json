@@ -1,0 +1,10 @@
+{
+  "uuid": "growi@9ticks.github.io",
+  "name": "Growi — Window Tabs",
+  "description": "Group windows of the same application into a tabbed stack (e.g. all VS Code windows) and switch between them with a tab bar.",
+  "shell-version": ["50"],
+  "session-modes": ["user", "unlock-dialog"],
+  "settings-schema": "org.gnome.shell.extensions.growi",
+  "url": "https://github.com/9ticks/growi",
+  "version-name": "0.1.0"
+}

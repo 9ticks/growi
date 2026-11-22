@@ -1,0 +1,46 @@
+/* Tab bar drawn above the active window of a tab group. */
+.growi-tabbar {
+    background-color: #242424;
+    border-radius: 8px 8px 0 0;
+    padding: 2px 2px 0 2px;
+    spacing: 2px;
+}
+
+.growi-tab {
+    color: #c0c0c0;
+    background-color: transparent;
+    border-radius: 6px 6px 0 0;
+    padding: 0 4px 0 8px;
+    font-size: 9.5pt;
+}
+
+.growi-tab:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.growi-tab-active {
+    color: #ffffff;
+    background-color: #3a3a3a;
+    /* -st-accent-color is missing on some custom shell themes: fixed fallback first. */
+    box-shadow: inset 0 -2px 0 0 #3584e4;
+    box-shadow: inset 0 -2px 0 0 -st-accent-color;
+}
+
+.growi-tab-label {
+    padding: 0 6px;
+}
+
+.growi-tab-close {
+    border-radius: 99px;
+    padding: 2px;
+    color: inherit;
+}
+
+.growi-tab-close:hover {
+    background-color: rgba(255, 255, 255, 0.16);
+}
+
+.growi-tab-close StIcon {
+    icon-size: 12px;
+}

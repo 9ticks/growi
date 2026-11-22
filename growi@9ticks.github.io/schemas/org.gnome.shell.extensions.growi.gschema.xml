@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.growi" path="/org/gnome/shell/extensions/growi/">
+    <key name="app-rules" type="as">
+      <default>['com.microsoft.VSCode.desktop', 'code.desktop', 'code-oss.desktop', 'codium.desktop', 'Code', 'code']</default>
+      <summary>Applications whose windows are grouped automatically</summary>
+      <description>Desktop app IDs (e.g. com.microsoft.VSCode.desktop) or WM classes (e.g. Code). Matching is case-insensitive.</description>
+    </key>
+    <key name="tab-bar-height" type="i">
+      <range min="20" max="64"/>
+      <default>30</default>
+      <summary>Tab bar height in logical pixels</summary>
+    </key>
+    <key name="show-single-tab" type="b">
+      <default>false</default>
+      <summary>Show the tab bar even when a group has a single window</summary>
+    </key>
+    <key name="next-tab" type="as">
+      <default><![CDATA[['<Super><Alt>Page_Down']]]></default>
+      <summary>Switch to the next tab of the focused group</summary>
+    </key>
+    <key name="previous-tab" type="as">
+      <default><![CDATA[['<Super><Alt>Page_Up']]]></default>
+      <summary>Switch to the previous tab of the focused group</summary>
+    </key>
+    <key name="toggle-grouping" type="as">
+      <default><![CDATA[['<Super><Alt>g']]]></default>
+      <summary>Detach the focused window from its group, or attach it to its app group</summary>
+    </key>
+  </schema>
+</schemalist>

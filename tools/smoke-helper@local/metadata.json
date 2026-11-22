@@ -1,0 +1,6 @@
+{
+  "uuid": "smoke-helper@local",
+  "name": "Growi smoke-test helper",
+  "description": "Test-only: enables org.gnome.Shell.Eval in the nested headless shell used by tools/smoke.sh. Never install in a real session.",
+  "shell-version": ["50"]
+}

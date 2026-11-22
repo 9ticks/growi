@@ -1,0 +1,12 @@
+# Build outputs
+growi@9ticks.github.io/schemas/gschemas.compiled
+*.zip
+
+# Local planning and review notes
+.done/
+.plans/
+.review/
+
+# Editor and OS files
+*~
+.DS_Store

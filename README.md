@@ -5,6 +5,8 @@ tabbed group, with a tab bar above the window, so that for example all your
 VS Code windows share one place on the screen and you switch between them like
 browser tabs.
 
+![Growi tab bar grouping two VS Code windows](screenshot_main.png)
+
 - Windows of the apps listed in the rules are grouped automatically, one group
   per app and per workspace. Any other window can be grouped on demand with a
   shortcut.
@@ -83,7 +85,7 @@ closed.
 
 ### Preferences
 
-![Growi preferences](screenshot.png)
+![Growi preferences](screenshot_pref.png)
 
 ```sh
 gnome-extensions prefs growi@9ticks.github.io

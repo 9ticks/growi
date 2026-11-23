@@ -18,6 +18,17 @@ Requires GNOME Shell 50 on Wayland.
 
 ## Install
 
+### From a release archive
+
+Download `growi@9ticks.github.io.shell-extension.zip` from the
+[Releases](https://github.com/9ticks/growi/releases) page, then run:
+
+```sh
+gnome-extensions install growi@9ticks.github.io.shell-extension.zip
+```
+
+### From source
+
 Requires `make`, `glib-compile-schemas`, and `gnome-extensions` (included with
 GNOME Shell).
 

@@ -1,0 +1,84 @@
+name: CI & Release
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends eslint gjs libglib2.0-bin zip
+
+      - name: Compile schemas, lint, and run unit tests
+        run: make schemas lint test
+
+      - name: Pack extension bundle
+        run: |
+          (cd growi@9ticks.github.io && zip -r ../growi@9ticks.github.io.shell-extension.zip . -x 'schemas/gschemas.compiled')
+          unzip -l growi@9ticks.github.io.shell-extension.zip
+
+      - name: Upload bundle artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: growi@9ticks.github.io.shell-extension
+          path: growi@9ticks.github.io.shell-extension.zip
+
+  release:
+    needs: check
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify tag matches metadata.json version-name
+        run: |
+          tag_version="${GITHUB_REF_NAME#v}"
+          meta_version="$(jq -r '."version-name"' growi@9ticks.github.io/metadata.json)"
+          if [ "$tag_version" != "$meta_version" ]; then
+            echo "Tag ($tag_version) does not match metadata.json version-name ($meta_version)" >&2
+            exit 1
+          fi
+
+      - name: Download bundle artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: growi@9ticks.github.io.shell-extension
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" \
+            growi@9ticks.github.io.shell-extension.zip \
+            --title "${GITHUB_REF_NAME}" \
+            --notes "$(cat <<'EOF'
+          ### Install from release archive
+
+          Download `growi@9ticks.github.io.shell-extension.zip` below, then run:
+
+          ```sh
+          gnome-extensions install growi@9ticks.github.io.shell-extension.zip
+          ```
+
+          Log out and log back in, then enable it:
+
+          ```sh
+          gnome-extensions enable growi@9ticks.github.io
+          ```
+          EOF
+          )" \
+            --generate-notes
